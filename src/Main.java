@@ -4,5 +4,7 @@ public class Main {
         CampoMinato c = new CampoMinato(righe, colonne);
         c.inizializzaCampo();
         System.out.println(c.stampaCampo());
+        c.posizionaMine();
+        System.out.println(c.stampaCampo());
     }
 }

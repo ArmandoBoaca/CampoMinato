@@ -21,13 +21,27 @@ public class CampoMinato {
         }
     }
 
-    public void posizionaMine(){
+    public void posizionaMine() {
         int nMine = this.righe * this.colonne / 10;
-        for (int i = 0; i < nMine; i++) {
+        int Mina = -1;
 
+        for (int i = 0; i < nMine; i++) {
+            int rigaRandom = (int) (Math.random() * this.righe);
+            int colonnaRandom = (int) (Math.random() * this.colonne);
+
+            // Assicurati che la cella selezionata non contenga già una mina
+            while (campo[rigaRandom][colonnaRandom] == Mina) {
+                rigaRandom = (int) (Math.random() * this.righe);
+                colonnaRandom = (int) (Math.random() * this.colonne);
+            }
+
+            // Posiziona la mina nella cella selezionata
+            campo[rigaRandom][colonnaRandom] = Mina;
         }
-        int random = (int) (Math.random() * 10);
-        int random = (int) (Math.random() * 6);
+    }
+
+    public boolean eseguiClick(int riga, int colonna){
+
     }
 
 
