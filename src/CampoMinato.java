@@ -5,10 +5,12 @@ public class CampoMinato {
     private int righe;
     private int colonne;
     private int[][] campo;
+    private boolean[][] celleScoperte;
 
     public CampoMinato(int righe, int colonne){
         this.righe = righe;
         this.colonne = colonne;
+        this.celleScoperte = new boolean[righe][colonne];
     }
 
     public void inizializzaCampo(){
@@ -16,6 +18,7 @@ public class CampoMinato {
         for (int i = 0; i < this.righe; i++ ) {
             for (int j = 0; j < this.colonne; j++) {
                 this.campo[i][j] = 0;
+                this.celleScoperte[i][j] = false;
             }
 
         }
@@ -29,19 +32,26 @@ public class CampoMinato {
             int rigaRandom = (int) (Math.random() * this.righe);
             int colonnaRandom = (int) (Math.random() * this.colonne);
 
-            // Assicurati che la cella selezionata non contenga già una mina
             while (campo[rigaRandom][colonnaRandom] == Mina) {
                 rigaRandom = (int) (Math.random() * this.righe);
                 colonnaRandom = (int) (Math.random() * this.colonne);
             }
 
-            // Posiziona la mina nella cella selezionata
             campo[rigaRandom][colonnaRandom] = Mina;
         }
     }
 
     public boolean eseguiClick(int riga, int colonna){
+        if (celleScoperte[riga][colonna]) {
+            return true;
+        }
 
+        celleScoperte[riga][colonna] = true;
+
+        if (campo[riga][colonna] == -1) {
+            return false;
+        }
+        return true;
     }
 
 
@@ -49,10 +59,14 @@ public class CampoMinato {
         String str = "";
         for (int i = 0; i < this.righe; i++ ) {
             for (int j = 0; j < this.colonne; j++) {
-                str += this.campo[i][j]+ "\t";
+                // Mostra solo le celle scoperte e il valore della mina se è stata colpita
+                if (celleScoperte[i][j]) {
+                    str += this.campo[i][j] + "\t";
+                } else {
+                    str += "X\t";  // X indica una cella non scoperta
+                }
             }
-            str += "\n";
-
+            str+="\n";
         }
         return str;
     }
