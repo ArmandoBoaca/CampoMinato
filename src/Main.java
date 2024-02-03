@@ -12,8 +12,7 @@ public class Main {
 
         System.out.println("Campo iniziale:");
         System.out.println(cM.stampaCampo());
-
-
+        
         while (true) {
             System.out.print("Inserisci riga: ");
             int riga = scanner.nextInt();

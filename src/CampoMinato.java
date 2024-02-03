@@ -20,7 +20,6 @@ public class CampoMinato {
                 this.campo[i][j] = 0;
                 this.celleScoperte[i][j] = false;
             }
-
         }
     }
 
@@ -36,7 +35,6 @@ public class CampoMinato {
                 rigaRandom = (int) (Math.random() * this.righe);
                 colonnaRandom = (int) (Math.random() * this.colonne);
             }
-
             campo[rigaRandom][colonnaRandom] = Mina;
         }
     }
@@ -45,7 +43,6 @@ public class CampoMinato {
         if (celleScoperte[riga][colonna]) {
             return true;
         }
-
         celleScoperte[riga][colonna] = true;
 
         if (campo[riga][colonna] == -1) {
@@ -54,23 +51,18 @@ public class CampoMinato {
         return true;
     }
 
-
     public String stampaCampo(){
         String str = "";
         for (int i = 0; i < this.righe; i++ ) {
             for (int j = 0; j < this.colonne; j++) {
-                // Mostra solo le celle scoperte e il valore della mina se è stata colpita
                 if (celleScoperte[i][j]) {
                     str += this.campo[i][j] + "\t";
                 } else {
-                    str += "X\t";  // X indica una cella non scoperta
+                    str += "X\t";
                 }
             }
             str+="\n";
         }
         return str;
     }
-
-
-
 }
