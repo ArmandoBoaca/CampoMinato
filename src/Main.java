@@ -24,14 +24,21 @@ public class Main {
         System.out.println("Campo iniziale:");
         System.out.println(cM.stampaCampo());
 
+        int rigaIn = 0;
+        int colonnaIn = 0;
         while (true) {
-            System.out.print("Inserisci riga: ");
-            int riga = scanner.nextInt();
+            do {
+                System.out.print("Inserisci riga: ");
+                rigaIn = scanner.nextInt();
 
-            System.out.print("Inserisci colonna: ");
-            int colonna = scanner.nextInt();
+            }while((rigaIn > (righe - 1)) || (rigaIn <= 0));
 
-            if (!cM.eseguiClick(riga, colonna)) {
+            do {
+                System.out.print("Inserisci colonna: ");
+                colonnaIn = scanner.nextInt();
+            }while((colonnaIn > (colonne - 1)) || (colonnaIn <= 0));
+
+            if (!cM.eseguiClick(rigaIn, colonnaIn)) {
                 System.out.println("Hai colpito una mina! Il gioco è terminato.");
                 break;
             }
